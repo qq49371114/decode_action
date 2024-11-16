@@ -20,7 +20,7 @@ class yuanshen():
   while True:
    i+=1
    url=f"https://app.zhuanbang.net/{key}/launch?_random={int(time.time() * 1000)}&type=slide"
-   r=requests.get(url,headers=self.h).json()
+   r=requests.get(url,headers=self.h, timeout=60).json()
    if r['code']==0:
     print(f"第[{i}]个红包获取信息成功")
     self.csrftoken=r['data']['extArgs']['csrfToken']
@@ -28,7 +28,7 @@ class yuanshen():
     self.time=int(time.time())
     url=f"https://app.zhuanbang.net/{key}/award/grant?_t={self.time}"
     data={"csrfToken":f"{self.csrftoken}","deviceId":f"{self.sessionId}","timestamp":f"{self.time}","sign":f"{self.sign_()}"}
-    r=requests.post(url,headers=self.h,data=data).json()
+    r=requests.post(url,headers=self.h,data=data, timeout=60).json()
     if r['code']==0:
      print(f"第[{i}]个红包领取成功,获得[{r['data']['awardMoney']}]元")
     else:
