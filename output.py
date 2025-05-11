@@ -2,8 +2,9 @@
 import requests
 import os
 import time
-import random
 import hashlib
+import secrets
+
 class yuanshen():
  def __init__(self,cookie):
   self.cookie=cookie
@@ -39,7 +40,7 @@ class yuanshen():
     break
    if i>=21:
     break
-   time.sleep(random.randint(20,48))
+   time.sleep(secrets.SystemRandom().randint(20,48))
  def main(self):
   print("===========开始执行快手刷视频===========")
   self.video("kwai_video")
