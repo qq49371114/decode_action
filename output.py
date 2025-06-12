@@ -4,6 +4,8 @@ import os
 import time
 import random
 import hashlib
+from security import safe_requests
+
 class yuanshen():
  def __init__(self,cookie):
   self.cookie=cookie
@@ -20,7 +22,7 @@ class yuanshen():
   while True:
    i+=1
    url=f"https://app.zhuanbang.net/{key}/launch?_random={int(time.time() * 1000)}&type=slide"
-   r=requests.get(url,headers=self.h).json()
+   r=safe_requests.get(url,headers=self.h).json()
    if r['code']==0:
     print(f"第[{i}]个红包获取信息成功")
     self.csrftoken=r['data']['extArgs']['csrfToken']
